@@ -6,7 +6,9 @@ public class PrimeiroPrograma {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Hello, world!");
+		int a = 3;
+		int b = 2;
+		System.out.println("Hello, world! " + (a + b));
 		
 		Gato gato = new Gato();
 		
