@@ -10,9 +10,13 @@ public class SmartTv {
     }
 
     public boolean desligarTv(){
-        canal=0;
-        volume=0;
+        canal = 0;
+        volume = 0;
         return false;
+    }
+
+    public void mudarCanal(int novoCanal){
+        canal = novoCanal;
     }
 
     public void trocarCanalUp(){
