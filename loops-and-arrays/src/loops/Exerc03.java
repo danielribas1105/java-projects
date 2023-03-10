@@ -1,13 +1,15 @@
+package loops;
+
 public class Exerc03 {
     public static void main(String[] args) {
-        int [] numeros = {5,8,2,9,4};
+        int [] numeros = {75,8,201,9,25};
         int indice = 0;
         double soma = 0.0;
         int maior = numeros[indice];
         do{
             soma += numeros[indice];
-            if (maior < numeros[indice + 1]){
-                maior = numeros[indice + 1];
+            if (maior < numeros[indice]){
+                maior = numeros[indice];
             }
             indice++;
         }while (indice < numeros.length);
