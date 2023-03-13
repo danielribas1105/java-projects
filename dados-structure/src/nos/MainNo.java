@@ -1,7 +1,6 @@
 package nos;
 
 public class MainNo {
-
     public static void main(String[] args) {
 
         No<Integer> no1 = new No<>(1);
@@ -22,7 +21,6 @@ public class MainNo {
         System.out.println(no1.getProximoNo().getProximoNo());
         System.out.println(no1.getProximoNo().getProximoNo().getProximoNo());
         System.out.println(no1.getProximoNo().getProximoNo().getProximoNo().getProximoNo());
-
 
     }
 }
