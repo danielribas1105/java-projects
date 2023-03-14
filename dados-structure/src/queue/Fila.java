@@ -2,7 +2,7 @@ package queue;
 
 public class Fila {
 
-    private No refNoEntrada; //referência apontando para o último nó da fila
+    private No refNoEntrada; //referência apontando para o último nó (fim da fila)
 
     public Fila() {
         this.refNoEntrada = null;
@@ -10,25 +10,30 @@ public class Fila {
 
     public void enqueue(No novoNo){
        novoNo.setRefNo(refNoEntrada);
-       refNoEntrada.setRefNo(novoNo);
+       refNoEntrada = novoNo;
     }
 
     public No first(){
-        No noAuxiliar = refNoEntrada;
-        if(!this.isEmpty()){
-            while (refNoEntrada.getRefNo() != null){
-                refNoEntrada = refNoEntrada.getRefNo();
+        No primeiroNo = refNoEntrada;
+        if (!this.isEmpty()){
+            while (primeiroNo.getRefNo() != null){
+                primeiroNo = primeiroNo.getRefNo();
             }
         }else
             return null;
-
-        return refNoEntrada;
+        return primeiroNo;
     }
 
     public No dequeue(){
-        if(!this.isEmpty()){
-            refNoEntrada = refNoEntrada.getRefNo();
-            return refNoEntrada;
+        No primeiroNo = refNoEntrada;
+        No noAnterior = refNoEntrada;
+        if (!this.isEmpty()){
+            while (primeiroNo.getRefNo() != null){
+                noAnterior = primeiroNo;
+                primeiroNo = primeiroNo.getRefNo();
+            }
+            noAnterior.setRefNo(null);
+            return primeiroNo;
         }else
             return null;
     }
@@ -40,6 +45,18 @@ public class Fila {
         String stringRetorno = "----------------\n";
         stringRetorno += "------FILA------\n";
         stringRetorno += "----------------\n";
+        No noAuxiliar = refNoEntrada;
+
+        if(!this.isEmpty()){
+            while (true){
+                stringRetorno += "[Nó {" + noAuxiliar.getObject() + "}] -> ";
+                if(noAuxiliar.getRefNo() == null){
+                    break;
+                }
+                noAuxiliar = noAuxiliar.getRefNo();
+            }
+        }else
+            return stringRetorno += "FILA VAZIA!!!";
 
         return stringRetorno;
     }
