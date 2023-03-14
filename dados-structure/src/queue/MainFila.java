@@ -4,14 +4,14 @@ public class MainFila {
 
     public static void main(String[] args){
 
-        Fila minhaFila = new Fila();
+        Fila<String> minhaFila = new Fila<>();
 
-        minhaFila.enqueue(new No("1º"));
-        minhaFila.enqueue(new No("2º"));
-        minhaFila.enqueue(new No("3º"));
-        minhaFila.enqueue(new No("4º"));
-        minhaFila.enqueue(new No("5º"));
-        minhaFila.enqueue(new No("6º"));
+        minhaFila.enqueue("1º");
+        minhaFila.enqueue("2º");
+        minhaFila.enqueue("3º");
+        minhaFila.enqueue("4º");
+        minhaFila.enqueue("5º");
+        minhaFila.enqueue("6º");
 
         System.out.println(minhaFila);
 

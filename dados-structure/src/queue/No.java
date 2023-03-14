@@ -1,22 +1,20 @@
 package queue;
 
-public class No {
+public class No<T> {
 
-    private Object object;
-    private No refNo;
+    private T object;
+    private No<T> refNo;
 
     public No() {}
 
-    public No(Object obj) {
+    public No(T obj) {
         this.refNo = null;
         this.object = obj;
     }
 
-    public Object getObject() {
-        return object;
-    }
+    public T getObject() { return object; }
 
-    public void setObject(Object object) {
+    public void setObject(T object) {
         this.object = object;
     }
 

@@ -1,19 +1,20 @@
 package queue;
 
-public class Fila {
+public class Fila<T> {
 
-    private No refNoEntrada; //referência apontando para o último nó (fim da fila)
+    private No<T> refNoEntrada; //referência apontando para o último nó (fim da fila)
 
     public Fila() {
         this.refNoEntrada = null;
     }
 
-    public void enqueue(No novoNo){
-       novoNo.setRefNo(refNoEntrada);
-       refNoEntrada = novoNo;
+    public void enqueue(T novoObj){
+        No novoNo = new No(novoObj);
+        novoNo.setRefNo(refNoEntrada);
+        refNoEntrada = novoNo;
     }
 
-    public No first(){
+    public T first(){
         No primeiroNo = refNoEntrada;
         if (!this.isEmpty()){
             while (primeiroNo.getRefNo() != null){
@@ -21,10 +22,10 @@ public class Fila {
             }
         }else
             return null;
-        return primeiroNo;
+        return (T)primeiroNo.getObject();
     }
 
-    public No dequeue(){
+    public T dequeue(){
         No primeiroNo = refNoEntrada;
         No noAnterior = refNoEntrada;
         if (!this.isEmpty()){
@@ -33,7 +34,7 @@ public class Fila {
                 primeiroNo = primeiroNo.getRefNo();
             }
             noAnterior.setRefNo(null);
-            return primeiroNo;
+            return (T)primeiroNo.getObject();
         }else
             return null;
     }
