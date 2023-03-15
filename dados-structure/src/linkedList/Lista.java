@@ -54,6 +54,7 @@ public class Lista<T> {
             tamanho ++;
             while (refNo.getProximoNo() != null){
                 tamanho ++;
+                refNo = refNo.getProximoNo();
             }
         }
         return tamanho;
