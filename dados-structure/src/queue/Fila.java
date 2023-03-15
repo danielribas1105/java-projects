@@ -9,13 +9,13 @@ public class Fila<T> {
     }
 
     public void enqueue(T novoObj){
-        No novoNo = new No(novoObj);
+        No<T> novoNo = new No<>(novoObj);
         novoNo.setRefNo(refNoEntrada);
         refNoEntrada = novoNo;
     }
 
     public T first(){
-        No primeiroNo = refNoEntrada;
+        No<T> primeiroNo = refNoEntrada;
         if (!this.isEmpty()){
             while (primeiroNo.getRefNo() != null){
                 primeiroNo = primeiroNo.getRefNo();
@@ -26,8 +26,8 @@ public class Fila<T> {
     }
 
     public T dequeue(){
-        No primeiroNo = refNoEntrada;
-        No noAnterior = refNoEntrada;
+        No<T> primeiroNo = refNoEntrada;
+        No<T> noAnterior = refNoEntrada;
         if (!this.isEmpty()){
             while (primeiroNo.getRefNo() != null){
                 noAnterior = primeiroNo;
@@ -46,7 +46,7 @@ public class Fila<T> {
         String stringRetorno = "----------------\n";
         stringRetorno += "------FILA------\n";
         stringRetorno += "----------------\n";
-        No noAuxiliar = refNoEntrada;
+        No<T> noAuxiliar = refNoEntrada;
 
         if(!this.isEmpty()){
             while (true){
@@ -58,7 +58,7 @@ public class Fila<T> {
             }
         }else
             return stringRetorno += "FILA VAZIA!!!";
-
+        stringRetorno += "null";
         return stringRetorno;
     }
 }
