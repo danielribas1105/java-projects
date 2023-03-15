@@ -20,7 +20,7 @@ public class Lista<T> {
     }
 
     public T get(int index){
-        return getNo(index).getObject();
+        return this.getNo(index).getObject();
     }
 
     private No<T> getNo(int index){
