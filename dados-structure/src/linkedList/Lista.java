@@ -6,18 +6,6 @@ public class Lista<T> {
 
     public Lista() {this.refNoEntrada = null;}
 
-    public int size(){
-        int tamanho = 0;
-        No<T> refNo = refNoEntrada;
-        if(refNo != null) {
-            tamanho ++;
-            while (refNo.getProximoNo() != null){
-                tamanho ++;
-            }
-        }
-        return tamanho;
-    }
-
     public void add(T novoObj){
         No<T> novoNo = new No<>(novoObj);
         if (this.isEmpty()) {
@@ -31,7 +19,23 @@ public class Lista<T> {
         }
     }
 
+    public T get(int index){
+        return getNo(index).getObject();
+    }
+
+    private No<T> getNo(int index){
+        checkIndex(index);
+        No<T> noAuxiliar = refNoEntrada;
+        No<T> noRetorno = null;
+        for(int i = 0; i <= index; i++){
+            noRetorno = noAuxiliar;
+            noAuxiliar = noAuxiliar.getProximoNo();
+        }
+        return noRetorno;
+    }
+
     public T remove(int index){
+        checkIndex(index);
         No<T> noPivot = this.getNo(index);
         if(index == 0){
             refNoEntrada = noPivot.getProximoNo();
@@ -43,25 +47,22 @@ public class Lista<T> {
         }
     }
 
-    public T get(int index){
-        return getNo(index).getObject();
-    }
-
-    private No<T> getNo(int index){
-        checkIndex(index);
-        No<T> noAuxiliar = refNoEntrada;
-        No<T> noRetorno = null;
-        for(int i = 0; i < this.size() - 1; i++){
-            noRetorno = noAuxiliar;
-            noAuxiliar = noAuxiliar.getProximoNo();
+    public int size(){
+        int tamanho = 0;
+        No<T> refNo = refNoEntrada;
+        if(refNo != null) {
+            tamanho ++;
+            while (refNo.getProximoNo() != null){
+                tamanho ++;
+            }
         }
-        return noRetorno;
+        return tamanho;
     }
 
     private void checkIndex(int index){
         if(index >= size()){
             throw new IndexOutOfBoundsException("Não existe conteúdo no índice " + index + ". A lista " +
-                    "possui índices até a posição " + (size()-1) + "!");
+                    "possui índices até a posição " + (this.size()-1) + "!");
         }
     }
 
