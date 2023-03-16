@@ -19,11 +19,13 @@ public class ListaDupla<T> {
     public void add(T novoObj){
         NoDuplo<T> novoNo = new NoDuplo<>(novoObj);
         novoNo.setNoPosterior(null);
-        if(primeiroNo == null){
+        if(this.isEmpty()){
             primeiroNo = novoNo;
+            ultimoNo = primeiroNo;
         }else {
             novoNo.setNoAnterior(ultimoNo);
             ultimoNo.setNoPosterior(novoNo);
+            ultimoNo = novoNo;
         }
         tamanhoLista++;
     }
@@ -32,21 +34,41 @@ public class ListaDupla<T> {
         NoDuplo<T> noAuxiliar = getNo(index);
         NoDuplo<T> novoNo = new NoDuplo<>(novoObj);
         if(index == 0){
+            primeiroNo = novoNo;
+            primeiroNo.setNoPosterior(noAuxiliar);
             noAuxiliar.setNoAnterior(novoNo);
-            novoNo.setNoAnterior(null);
+        } else if (index == this.size() - 1) {
+            ultimoNo = novoNo;
+            noAuxiliar.setNoPosterior(ultimoNo);
+            ultimoNo.setNoAnterior(noAuxiliar);
+        } else {
             novoNo.setNoPosterior(noAuxiliar);
-        }else if (index == this.size() - 1){
-            noAuxiliar.setNoPosterior(novoNo);
-            novoNo.setNoAnterior(noAuxiliar);
-            novoNo.setNoPosterior(null);
-        }else {
-            NoDuplo<T> noAuxPosterior = getNo(index + 1);
-            novoNo.setNoPosterior(noAuxPosterior);
-            noAuxiliar.setNoPosterior(novoNo);
-            novoNo.setNoAnterior(noAuxiliar);
-            noAuxPosterior.setNoAnterior(novoNo);
+            novoNo.setNoAnterior(noAuxiliar.getNoAnterior());
+            //novoNo.getNoPosterior().setNoAnterior(novoNo);
+            //novoNo.getNoAnterior().setNoAnterior(novoNo);
         }
         tamanhoLista++;
+    }
+
+    public void remove(int index) {
+        if (index == 0) {
+            primeiroNo = primeiroNo.getNoPosterior();
+            if (primeiroNo != null){
+                primeiroNo.setNoAnterior(null);
+            }
+        }else if (index == this.size() - 1){
+            ultimoNo = ultimoNo.getNoAnterior();
+            ultimoNo.setNoPosterior(null);
+        }else {
+            NoDuplo<T> noAuxiliar = getNo(index);
+            noAuxiliar.getNoAnterior().setNoPosterior(noAuxiliar.getNoPosterior());
+            if (noAuxiliar != ultimoNo) {
+                noAuxiliar.getNoPosterior().setNoAnterior(noAuxiliar.getNoAnterior());
+            }else {
+                ultimoNo = noAuxiliar;
+            }
+        }
+        tamanhoLista--;
     }
 
     public T get(int index){
@@ -72,5 +94,23 @@ public class ListaDupla<T> {
             return true;
         else
             return false;
+    }
+
+    @Override
+    public String toString() {
+        String strRetorno = "---------------------\n";
+        strRetorno += "-----LISTA DUPLA-----\n";
+        strRetorno += "---------------------\n";
+        NoDuplo<T> noAuxiliar = primeiroNo;
+        if(!this.isEmpty()) {
+            for(int i = 0; i < this.size(); i++){
+                strRetorno += "[Nó Lista {" + noAuxiliar.getObject() + "}] -> ";
+                noAuxiliar = noAuxiliar.getNoPosterior();
+            }
+            strRetorno += "null";
+        }else {
+            return strRetorno += "LISTA VAZIA!";
+        }
+        return strRetorno;
     }
 }
