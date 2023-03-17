@@ -33,19 +33,17 @@ public class ListaDupla<T> {
     public void add(int index, T novoObj){
         NoDuplo<T> noAuxiliar = getNo(index);
         NoDuplo<T> novoNo = new NoDuplo<>(novoObj);
+        novoNo.setNoPosterior(noAuxiliar);
         if(index == 0){
             primeiroNo = novoNo;
-            primeiroNo.setNoPosterior(noAuxiliar);
-            noAuxiliar.setNoAnterior(novoNo);
         } else if (index == this.size() - 1) {
             ultimoNo = novoNo;
             noAuxiliar.setNoPosterior(ultimoNo);
             ultimoNo.setNoAnterior(noAuxiliar);
         } else {
-            novoNo.setNoPosterior(noAuxiliar);
             novoNo.setNoAnterior(noAuxiliar.getNoAnterior());
-            //novoNo.getNoPosterior().setNoAnterior(novoNo);
-            //novoNo.getNoAnterior().setNoAnterior(novoNo);
+            novoNo.getNoPosterior().setNoAnterior(novoNo);
+            novoNo.getNoAnterior().setNoPosterior(novoNo);
         }
         tamanhoLista++;
     }

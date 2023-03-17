@@ -10,10 +10,14 @@ public class MainListaDupla {
         minhaLista.add("Nó 2");
         minhaLista.add("Nó 3");
         minhaLista.add("Nó 4");
-        minhaLista.add(1,"Nó extra");
+        minhaLista.add(2,"Nó extra");
 
         System.out.println(minhaLista);
         System.out.println("Quantidade de nós: " + minhaLista.size());
+
+        minhaLista.remove(1);
+        minhaLista.add(1,"Nó 2 extra");
+        System.out.println(minhaLista);
 
     }
 }
