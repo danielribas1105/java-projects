@@ -31,7 +31,7 @@ public class ArvoreBinaria<T extends Comparable<T>> {
     private void exibirInOrder(BinNo<T> noAtual) {
         if (noAtual != null) {
             exibirInOrder(noAtual.getNoEsq());
-            System.out.println(noAtual.getObject() + ", ");
+            System.out.print(noAtual.getObject() + ", ");
             exibirInOrder(noAtual.getNoDir());
         }
     }
@@ -43,7 +43,7 @@ public class ArvoreBinaria<T extends Comparable<T>> {
 
     private void exibirPreOrder(BinNo<T> noAtual) {
         if (noAtual != null) {
-            System.out.println(noAtual.getObject() + ", ");
+            System.out.print(noAtual.getObject() + ", ");
             exibirPreOrder(noAtual.getNoEsq());
             exibirPreOrder(noAtual.getNoDir());
         }
@@ -58,7 +58,7 @@ public class ArvoreBinaria<T extends Comparable<T>> {
         if (noAtual != null) {
             exibirPosOrder(noAtual.getNoEsq());
             exibirPosOrder(noAtual.getNoDir());
-            System.out.println(noAtual.getObject() + ", ");
+            System.out.print(noAtual.getObject() + ", ");
         }
     }
 
@@ -69,22 +69,23 @@ public class ArvoreBinaria<T extends Comparable<T>> {
             BinNo<T> filho = null;
             BinNo<T> temp = null;
 
-            //Verificação de lista vazia
+            //Verificação de árvore vazia
             if (noAtual == null) {
-                System.out.println("Conteúdo não encontrado - bloco try");
-            }
-
-            //Laço para encontrar o nó a ser removido
-            while (noAtual != null && !noAtual.getObject().equals(object)) {
-                pai = noAtual;
-                if (object.compareTo(noAtual.getObject()) < 0){
-                    noAtual = noAtual.getNoEsq();
-                }else {
-                    noAtual = noAtual.getNoDir();
+                System.out.println("\nÁrvore Vazia - bloco try");
+            } else {
+                //Laço para encontrar o nó a ser removido
+                while (noAtual != null && !noAtual.getObject().equals(object)) {
+                    pai = noAtual;
+                    if (object.compareTo(noAtual.getObject()) < 0){
+                        noAtual = noAtual.getNoEsq();
+                    }else {
+                        noAtual = noAtual.getNoDir();
+                    }
                 }
             }
 
-            //Remoção do nó raiz
+            System.out.println("\nNó a ser removido: " + noAtual.getObject());
+            //Remover o nó
             if (pai == null){
                 if (noAtual.getNoDir() == null) {
                     this.raiz = noAtual.getNoEsq();
@@ -129,11 +130,13 @@ public class ArvoreBinaria<T extends Comparable<T>> {
                         pai.setNoDir(filho);
                     }
                 }
+
             }
 
 
         }catch (NullPointerException erro){
-            System.out.println("Conteúdo não encontrado - bloco cath");
+            System.out.println("\nConteúdo não encontrado - bloco cath");
         }
     }
+
 }
