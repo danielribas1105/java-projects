@@ -69,6 +69,12 @@ public class ArvoreBinaria<T extends Comparable<T>> {
             BinNo<T> filho = null;
             BinNo<T> temp = null;
 
+            //Verificação de lista vazia
+            if (noAtual == null) {
+                System.out.println("Conteúdo não encontrado - bloco try");
+            }
+
+            //Laço para encontrar o nó a ser removido
             while (noAtual != null && !noAtual.getObject().equals(object)) {
                 pai = noAtual;
                 if (object.compareTo(noAtual.getObject()) < 0){
@@ -78,8 +84,51 @@ public class ArvoreBinaria<T extends Comparable<T>> {
                 }
             }
 
-            if (noAtual == null) {
-                System.out.println("Conteúdo não encontrado - bloco try");
+            //Remoção do nó raiz
+            if (pai == null){
+                if (noAtual.getNoDir() == null) {
+                    this.raiz = noAtual.getNoEsq();
+                } else if (noAtual.getNoEsq() == null) {
+                    this.raiz = noAtual.getNoDir();
+                }else {
+                    for (temp = noAtual, filho = noAtual.getNoEsq();
+                        filho.getNoDir() != null;
+                        temp = filho, filho = filho.getNoEsq()) {
+                        if (filho != noAtual.getNoEsq()) {
+                            temp.setNoDir(filho.getNoEsq());
+                            filho.setNoEsq(raiz.getNoEsq());
+                        }
+                    }
+                    filho.setNoDir(raiz.getNoDir());
+                    raiz = filho;
+                }
+            } else if (noAtual.getNoDir() == null) {
+                if (pai.getNoEsq() == noAtual) {
+                    pai.setNoEsq(noAtual.getNoEsq());
+                }else {
+                    pai.setNoDir(noAtual.getNoEsq());
+                }
+            } else if (noAtual.getNoEsq() == null) {
+                if (pai.getNoEsq() == noAtual) {
+                    pai.setNoEsq(noAtual.getNoDir());
+                }else {
+                    pai.setNoDir(noAtual.getNoDir());
+                }
+            }else {
+                for (temp = noAtual, filho = noAtual.getNoEsq();
+                     filho.getNoDir() != null;
+                     temp = filho, filho = filho.getNoDir()) {
+                    if (filho != noAtual.getNoEsq()) {
+                        temp.setNoDir(filho.getNoEsq());
+                        filho.setNoEsq(noAtual.getNoEsq());
+                    }
+                    filho.setNoDir(noAtual.getNoDir());
+                    if (pai.getNoEsq() == noAtual) {
+                        pai.setNoEsq(filho);
+                    }else {
+                        pai.setNoDir(filho);
+                    }
+                }
             }
 
 
