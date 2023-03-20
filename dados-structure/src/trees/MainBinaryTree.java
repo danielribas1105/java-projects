@@ -17,17 +17,17 @@ public class MainBinaryTree {
         minhaArvore.inserir(new Obj(31));
         minhaArvore.inserir(new Obj(29));
         minhaArvore.inserir(new Obj(32));
-        minhaArvore.inserir(new Obj(1));
-        minhaArvore.inserir(new Obj(5));
+        //minhaArvore.inserir(new Obj(1));
+        //minhaArvore.inserir(new Obj(5));
 
-        //minhaArvore.exibirPreOrder();
+        minhaArvore.exibirPreOrder();
         minhaArvore.exibirInOrder();
-        //minhaArvore.exibirPosOrder();
+        minhaArvore.exibirPosOrder();
 
-        minhaArvore.remover(new Obj(10));
+        /*minhaArvore.remover(new Obj(10));
 
-        //minhaArvore.exibirPreOrder();
+        minhaArvore.exibirPreOrder();
         minhaArvore.exibirInOrder();
-        //minhaArvore.exibirPosOrder();
+        minhaArvore.exibirPosOrder();*/
     }
 }

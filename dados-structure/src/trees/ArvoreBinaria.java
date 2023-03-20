@@ -84,7 +84,8 @@ public class ArvoreBinaria<T extends Comparable<T>> {
                 }
             }
 
-            System.out.println("\nNó a ser removido: " + noAtual.getObject());
+            //System.out.println("\nNó a ser removido: " + noAtual.getObject());
+            
             //Remover o nó
             if (pai == null){
                 if (noAtual.getNoDir() == null) {
