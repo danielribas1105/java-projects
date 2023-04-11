@@ -1,14 +1,12 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class StreamMain {
 
     public static void main(String[] args) {
 
-        List<String> numAleatorios = Arrays.asList("1","2","4","7","1","8","2","5");
+        List<String> numAleatorios = Arrays.asList("1", "2", "4", "7", "1", "8", "2", "5");
 
         //System.out.println("Imprima todos os elementos dessa lista:");
         //numAleatorios.forEach(System.out::println);
